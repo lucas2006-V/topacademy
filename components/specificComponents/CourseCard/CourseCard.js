@@ -20,6 +20,9 @@ export default class CourseCard extends Component {
 						{this.props.blok.tagline}
 					</div>
 				</div>
+				{this.props.blok.bottombloks && this.props.blok.bottombloks.map((nestedBlok) => (
+						<StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+					))}
 			</>
 		);
 	}
