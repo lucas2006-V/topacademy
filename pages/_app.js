@@ -1,4 +1,4 @@
-wimport '../styles/globals.css'
+import '../styles/globals.css'
 
 import { storyblokInit, apiPlugin } from "@storyblok/react";
 
