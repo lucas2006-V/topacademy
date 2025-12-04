@@ -6,13 +6,16 @@
 
   &__main-content {
     display: grid;
-    grid-template-columns: 0 auto;
-    max-width: 1440px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
   }
 
 
-  &__short-description, &__description {
-    grid-column: 1 / 3;
+  &__short-description, 
+  &__description {
+    grid-column: 1 / 2;
   }
 }
 
