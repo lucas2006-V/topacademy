@@ -6,7 +6,7 @@ import Element from "../../genericComponents/Element/Element";
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
 import { RichTextToHTML } from "../../../functions/storyBlokRichTextRenderer";
 
-export default class Contact extends Component {
+export default class contact extends Component {
 
 	constructor(props) {
 		super(props);
