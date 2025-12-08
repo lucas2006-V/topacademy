@@ -15,7 +15,7 @@ export default class contact extends Component {
 	render() {
 		return (
 			<div {...storyblokEditable(this.props.blok)}>
-                testen dfqsdf
+                testen 
 		    </div>
 		);
 
