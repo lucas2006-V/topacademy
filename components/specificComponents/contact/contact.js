@@ -1,23 +1,35 @@
 import React, { Component } from "react";
-import Headermenu from "../../genericComponents/Headermenu/Headermenu";
-import Hero from "../../genericComponents/Hero/Hero";
-import TeacherCard from "../TeacherCard/TeacherCard";
-import Element from "../../genericComponents/Element/Element";
-import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
-import { RichTextToHTML } from "../../../functions/storyBlokRichTextRenderer";
+import { storyblokEditable } from "@storyblok/react";
 
 export default class contact extends Component {
 
-	constructor(props) {
-		super(props);
-	}
+    render() {
+        const blok = this.props.blok;
 
-	render() {
-		return (
-			<div {...storyblokEditable(this.props.blok)}>
-                testen 
-		    </div>
-		);
+        return (
+            <div {...storyblokEditable(blok)} className="contact-page">
 
-	}
+                {/* Naam of titel */}
+                {blok.name && (
+                    <h1>{blok.name}</h1>
+                )}
+
+                {/* Beschrijving (experience veld dat jij al hebt) */}
+                {blok.experience && (
+                    <p>{blok.experience}</p>
+                )}
+
+                {/* Email */}
+                {blok.email && (
+                    <p><strong>Email:</strong> {blok.email}</p>
+                )}
+
+                {/* Telefoon */}
+                {blok.phone_number && (
+                    <p><strong>Phone:</strong> {blok.phone_number}</p>
+                )}
+
+            </div>
+        );
+    }
 }
