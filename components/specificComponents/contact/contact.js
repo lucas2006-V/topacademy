@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import css from "./contact.module.scss";
 import Headermenu from "../../genericComponents/Headermenu/Headermenu";
-import Hero from "../../genericComponents/Hero/Hero";
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
-import { RichTextToHTML } from "../../../functions/storyBlokRichTextRenderer";
 
 export default class Contact extends Component {
   render() {
@@ -16,8 +14,7 @@ export default class Contact extends Component {
         <Headermenu blok={this.props.menu.content} />
 
         <main>
-          {/* Hero banner */}
-          <Hero blok={this.props.blok} contentTypeTag="contact" />
+          {/* Hero verwijderd */}
 
           {/* Tekst links, foto rechts */}
           <div className={css["contact-page__main-content"]}>
@@ -25,9 +22,7 @@ export default class Contact extends Component {
             {/* Tekst */}
             <div className={css["contact-page__text"]}>
               {blok.name && <h1>{blok.name}</h1>}
-              {blok.experience && (
-                <p>{blok.experience}</p>
-              )}
+              {blok.experience && <p>{blok.experience}</p>}
               {blok.email && <p><strong>Email:</strong> {blok.email}</p>}
               {blok.phone_number && <p><strong>Phone:</strong> {blok.phone_number}</p>}
             </div>
@@ -40,7 +35,7 @@ export default class Contact extends Component {
             )}
           </div>
 
-          {/* Bottomblocks / Justawk integratie */}
+          {/* Bottomblocks */}
           {blok.bottomblocks && blok.bottomblocks.map((nestedBlok) => (
             <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
           ))}

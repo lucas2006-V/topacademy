@@ -1,56 +1,53 @@
 ﻿@import "../../../styles/font-mixins.scss";
 @import "../../../styles/colors.scss";
+.contactPage {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  padding-top: 50px;
 
-.contact-page {
-  &__main-content {
+  &__mainContent {
     display: flex;
-    flex-direction: row; // FOTO LINKS — TEKST RECHTS
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 50px;
+    gap: 60px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 80px 20px;
   }
 
   &__text {
     max-width: 500px;
+    padding: 25px;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   }
 
-  &__text h1 {
-    font-size: 2rem;
-    font-family: inherit;   // Zelfde stijl als rest van de site
-    color: $primary-text;   // Of jouw gewenste kleur
-    margin-bottom: 15px;
-    font-weight: 600;
-  }
-
-  &__text p {
-   font-size: 2rem;
-    font-family: inherit;   // Zelfde stijl als rest van de site
-    color: $primary-text;   // Of jouw gewenste kleur
-    margin-bottom: 15px;
-    font-weight: 600;
+  &__text h1,
+  &__text p,
+  &__text strong {
+    color: #fff !important;
+    font-family: 'Montserrat', sans-serif;
   }
 
   &__image img {
-    max-width: 400px;
-    border-radius: 0;
+    max-width: 380px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
   }
 }
 
 @media only screen and (max-width: 850px) {
-  .contact-page__main-content {
+  .contactPage__mainContent {
     flex-direction: column;
-    align-items: center;
   }
 
-  .contact-page__text {
-    max-width: 90%;
+  .contactPage__text {
     text-align: center;
-  }
-
-  .contact-page__image img {
-    max-width: 80%;
+    max-width: 90%;
   }
 }
