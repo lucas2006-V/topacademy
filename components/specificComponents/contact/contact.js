@@ -29,7 +29,7 @@ export default class Contact extends Component {
                 <p>{blok.experience}</p>
               )}
               {blok.email && <p><strong>Email:</strong> {blok.email}</p>}
-              {blok.phone_number && <p><strong>Phone:</strong> {blok.phone_number}</p>}
+              {blok.phone_number && <p><strong>Phonenumber:</strong> {blok.phone_number}</p>}
             </div>
 
             {/* Foto */}
