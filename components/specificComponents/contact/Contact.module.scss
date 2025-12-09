@@ -199,4 +199,59 @@
       width: 820px;
     }
   }
+﻿@import "../../../styles/font-mixins.scss";
+@import "../../../styles/colors.scss";
+
+.contact-page {
+  &__main-content {
+    display: flex;
+    flex-direction: row; // FOTO LINKS — TEKST RECHTS
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  &__text {
+    max-width: 500px;
+  }
+
+  &__text h1 {
+    font-size: 2rem;
+    font-family: inherit;   // Zelfde stijl als rest van de site
+    color: $primary-text;   // Of jouw gewenste kleur
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+
+  &__text p {
+   font-size: 2rem;
+    font-family: inherit;   // Zelfde stijl als rest van de site
+    color: $primary-text;   // Of jouw gewenste kleur
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+
+  &__image img {
+    max-width: 400px;
+    border-radius: 0;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .contact-page__main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-page__text {
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .contact-page__image img {
+    max-width: 80%;
+  }
 }
