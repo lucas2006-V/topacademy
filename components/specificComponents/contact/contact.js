@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import css from "./contact.module.scss";
+import css from "./Contact.module.scss";
 import Headermenu from "../../genericComponents/Headermenu/Headermenu";
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
 
-export default class Contact extends Component {
+export default class contact extends Component {
   render() {
     const blok = this.props.blok;
 
@@ -24,7 +24,7 @@ export default class Contact extends Component {
               {blok.name && <h1>{blok.name}</h1>}
               {blok.experience && <p>{blok.experience}</p>}
               {blok.email && <p><strong>Email:</strong> {blok.email}</p>}
-              {blok.phone_number && <p><strong>Phone:</strong> {blok.phone_number}</p>}
+              {blok.phone_number && <p><strong>Phonenumber:</strong> {blok.phone_number}</p>}
             </div>
 
             {/* Foto */}
