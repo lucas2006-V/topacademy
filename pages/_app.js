@@ -28,7 +28,9 @@ import Location from '../components/specificComponents/Location/Location';
 import Artist from '../components/specificComponents/Artist/Artist';
 import Song from '../components/specificComponents/Song/Song';
 import contact from '../components/specificComponents/contact/contact';
-
+<header style={{ padding: '1rem', background: '#f5f5f5' }}>
+        <img src="/logo.png" alt="Logo" style={{ height: '50px' }} />
+      </header>
 
 const components = {
   person: Teacher,

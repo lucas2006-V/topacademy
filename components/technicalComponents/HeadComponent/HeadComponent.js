@@ -54,9 +54,9 @@ export default class HeadComponent extends Component {
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 				<meta lang="en" />
-				<link rel="icon" href="/images/logo/favicon@32x.png" />
-				<link rel="alternate icon" href="/images/logo/favicon.svg" />
-				<link rel="apple-touch-icon" href="/images/logo/favicon@180x.png" />
+				<link rel="icon" href="/images/logo/logo.png" />
+				<link rel="alternate icon" href="/images/logo/logo.png" />
+				<link rel="apple-touch-icon" href="/images/logo/logo.png" />
 				<link rel="dns-prefetch" href="https://cdn.materialdesignicons.com" />
 				{this.props.socialTags && Object.entries(this.props.socialTags).map(getTagElement)}
 				{this.state.loaded && <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@3.9.97/css/materialdesignicons.min.css" />}

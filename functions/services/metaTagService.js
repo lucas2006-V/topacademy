@@ -63,8 +63,8 @@ function getDefaultTags() {
 		"googlebot": "all",
 		"robots": "all",
 		// OpenGraph
-		"og:site_name": "TopAcademy",
-		"og:title": "TopAcademy",
+		"og:site_name": "GymsDeGroote",
+		"og:title": "GymsDeGroote",
 		"og:description": description,
 		"og:image": imageUrl,
 		"og:type": "website",
