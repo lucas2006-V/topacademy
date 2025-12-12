@@ -5,7 +5,8 @@ import {
   StoryblokComponent,
 } from "@storyblok/react";
 
-import Headermenu from "../../genericComponents/Headermenu/Headermenu"; // pas aan als je pad anders is
+import css from "./Prices.module.scss";
+import Headermenu from "../../genericComponents/Headermenu/Headermenu"; // pas aan indien nodig
 
 const Prices = ({ blok, menu }) => {
   /* ---------- helpers ---------- */
@@ -14,6 +15,7 @@ const Prices = ({ blok, menu }) => {
     if (!rich) return null;
     return (
       <div
+        className={css.paragraph}
         dangerouslySetInnerHTML={{
           __html: renderRichText(rich),
         }}
@@ -43,29 +45,13 @@ const Prices = ({ blok, menu }) => {
     if (!matrix.length) return null;
 
     return (
-      <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            tableLayout: "fixed",
-          }}
-        >
+      <div className={css.tableCard}>
+        <table className={css.table}>
           <tbody>
             {matrix.map((row, rIdx) => (
               <tr key={rIdx}>
                 {(row || []).map((cell, cIdx) => (
-                  <td
-                    key={`${rIdx}-${cIdx}`}
-                    style={{
-                      border: "1px solid #000",
-                      minHeight: "34px",
-                      padding: "6px 10px",
-                      verticalAlign: "top",
-                      whiteSpace: "pre-wrap",
-                      overflowWrap: "break-word",
-                    }}
-                  >
+                  <td key={`${rIdx}-${cIdx}`}>
                     {typeof cell === "object" && cell !== null ? (
                       "value" in cell ? (
                         typeof cell.value === "object"
@@ -99,28 +85,14 @@ const Prices = ({ blok, menu }) => {
   /* ---------- render ---------- */
 
   return (
-    <div {...storyblokEditable(blok)}>
-      {/* ✅ Headermenu zoals bij Contact */}
+    <div {...storyblokEditable(blok)} className={css.prices}>
       <Headermenu blok={menu?.content} />
 
       <main>
-        {/* Word-achtige pagina container */}
-        <div
-          style={{
-            maxWidth: "900px",
-            margin: "0 auto",
-            padding: "24px 16px",
-          }}
-        >
-          {/* Titel + intro */}
-          {blok?.title && (
-            <h1 style={{ marginBottom: "12px" }}>{blok.title}</h1>
-          )}
-          {blok?.intro_text && (
-            <p style={{ marginBottom: "16px" }}>{blok.intro_text}</p>
-          )}
+        <div className={css.container}>
+          {blok?.title && <h1 className={css.title}>{blok.title}</h1>}
+          {blok?.intro_text && <p className={css.intro}>{blok.intro_text}</p>}
 
-          {/* Sections */}
           {sections.map((section) => {
             const comp = section?.component;
 
@@ -130,7 +102,7 @@ const Prices = ({ blok, menu }) => {
                 <div
                   key={section._uid}
                   {...storyblokEditable(section)}
-                  style={{ margin: "18px 0" }}
+                  className={css.section}
                 >
                   {renderRich(rich)}
                 </div>
@@ -143,7 +115,7 @@ const Prices = ({ blok, menu }) => {
                 <div
                   key={section._uid}
                   {...storyblokEditable(section)}
-                  style={{ margin: "24px 0" }}
+                  className={css.section}
                 >
                   {renderWordTable(tbl)}
                 </div>
@@ -153,9 +125,8 @@ const Prices = ({ blok, menu }) => {
             return null;
           })}
 
-          {/* Bottomblocks onder alles */}
           {bottomblocks.length > 0 && (
-            <div style={{ marginTop: "40px" }}>
+            <div className={css.bottom}>
               {bottomblocks.map((nestedBlok) => (
                 <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
               ))}
@@ -168,3 +139,4 @@ const Prices = ({ blok, menu }) => {
 };
 
 export default Prices;
+

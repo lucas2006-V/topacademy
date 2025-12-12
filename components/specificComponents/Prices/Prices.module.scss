@@ -1,0 +1,114 @@
+@import "../../../styles/font-mixins.scss";
+@import "../../../styles/colors.scss";
+
+
+.prices {
+  background: #fff;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 18px 64px;
+}
+
+/* Titel + intro */
+.title {
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1.15;
+  margin: 10px 0 12px;
+  letter-spacing: -0.02em;
+}
+
+.intro {
+  max-width: 72ch;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #2b2b2b;
+  margin: 0 0 18px;
+}
+
+/* Sections spacing */
+.section {
+  margin: 18px 0 26px;
+}
+
+.paragraph {
+  max-width: 80ch;
+  line-height: 1.75;
+  color: #2b2b2b;
+
+  p {
+    margin: 0 0 12px;
+  }
+
+  a {
+    color: #0b5bd3;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+/* “Card” rond elke tabel */
+.tableCard {
+  margin: 18px 0 34px;
+  background: #b9e00a;
+  border: 1px solid #000000;
+  border-radius: 14px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+  padding: 14px;
+  overflow-x: auto; /* mobiel: scroll als te breed */
+}
+
+/* Tabel styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  min-width: 680px; /* zorgt dat kolommen niet te smal worden */
+
+  th,
+  td {
+    border: 1px solid #000000; /* i.p.v. hard zwart */
+    padding: 12px 12px;
+    vertical-align: top;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  th {
+    background: #0055ff;
+    font-weight: 650;
+    color: #1f2937;
+  }
+
+  /* eerste kolom iets nadrukkelijker */
+  td:first-child {
+    font-weight: 600;
+    color: #ff0000;
+    background: #b9e00a;
+  }
+
+  /* zebra rows */
+  tbody tr:nth-child(even) td {
+    background: #fcfcfd;
+  }
+
+  tbody tr:hover td {
+    background: #f3f7ff;
+  }
+}
+
+/* Bottomblocks spacing */
+.bottom {
+  margin-top: 46px;
+  padding-top: 18px;
+  border-top: 1px solid #ececec;
+  color: #2b2b2b;
+}
