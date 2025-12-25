@@ -67,20 +67,23 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      // Google Analytics pageview (optioneel)
       // ga.pageview(url)
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
+    return () => router.events.off("routeChangeComplete", handleRouteChange);
   }, [router.events]);
 
   return (
     <>
-      {/* Hotjar Tracking */}
+      {/* ContentSquare (CSQ) */}
+      <Script
+        id="contentsquare"
+        src="https://t.contentsquare.net/uxa/c5449d5a2ada8.js"
+        strategy="beforeInteractive"
+      />
+
+      {/* Hotjar (VERVANG DIT ID door jouw echte Hotjar hjid) */}
       <Script
         id="hotjar"
         strategy="afterInteractive"
@@ -88,7 +91,7 @@ function MyApp({ Component, pageProps }) {
           __html: `
             (function(h,o,t,j,a,r){
               h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-              h._hjSettings={hjid:501452,hjsv:6};
+              h._hjSettings={hjid:1234567,hjsv:6};
               a=o.getElementsByTagName('head')[0];
               r=o.createElement('script');r.async=1;
               r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
@@ -98,7 +101,7 @@ function MyApp({ Component, pageProps }) {
         }}
       />
 
-      {/* Tawk.to live chat */}
+      {/* Tawk.to */}
       <Script
         id="tawk-to"
         strategy="afterInteractive"
@@ -124,5 +127,6 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
+
 
 
