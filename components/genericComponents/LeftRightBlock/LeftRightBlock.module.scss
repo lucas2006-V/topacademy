@@ -94,6 +94,11 @@
 
   &__large-text {
     @include huge-text-font;
+    font-size: 3rem;
+    color: #000000 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600;
+    line-height: 1.2;
 
     &--with-navigator {
       @extend .highlighted-content__large-text;
@@ -373,12 +378,4 @@
       margin-bottom: 90px;
     }
   }
-}
-
-.highlighted-content__large-text {
-  font-size: 3rem;
-  color: #000000 !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-weight: 600;
-  line-height: 1.2;
 }

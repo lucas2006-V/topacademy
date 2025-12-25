@@ -84,6 +84,11 @@
   &__title {
     margin-bottom: 30px;
     @include title-font;
+    font-size: 3rem;
+    color: #000000 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600;
+    line-height: 1.2; 
   }
 
   &__subtitle {
