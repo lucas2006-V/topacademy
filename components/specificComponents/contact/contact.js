@@ -1,23 +1,47 @@
 import React, { Component } from "react";
+import css from "./Contact.module.scss";
 import Headermenu from "../../genericComponents/Headermenu/Headermenu";
-import Hero from "../../genericComponents/Hero/Hero";
-import TeacherCard from "../TeacherCard/TeacherCard";
-import Element from "../../genericComponents/Element/Element";
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
-import { RichTextToHTML } from "../../../functions/storyBlokRichTextRenderer";
 
-export default class Contact extends Component {
+export default class contact extends Component {
+  render() {
+    const blok = this.props.blok;
 
-	constructor(props) {
-		super(props);
-	}
+    return (
+      <div {...storyblokEditable(blok)} className={css["contact-page"]}>
+        
+        {/* Menu en logo */}
+        <Headermenu blok={this.props.menu.content} />
 
-	render() {
-		return (
-			<div {...storyblokEditable(this.props.blok)}>
-                test
-		    </div>
-		);
+        <main>
+          {/* Hero verwijderd */}
 
-	}
+          {/* Tekst links, foto rechts */}
+          <div className={css["contact-page__main-content"]}>
+            
+            {/* Tekst */}
+            <div className={css["contact-page__text"]}>
+              {blok.name && <h1>{blok.name}</h1>}
+              {blok.experience && <p>{blok.experience}</p>}
+              {blok.email && <p><strong>Email:</strong> {blok.email}</p>}
+              {blok.phone_number && <p><strong>Phonenumber:</strong> {blok.phone_number}</p>}
+            </div>
+
+            {/* Foto */}
+            {blok.image && (
+              <div className={css["contact-page__image"]}>
+                <img src={blok.image.filename} alt={blok.name} />
+              </div>
+            )}
+          </div>
+
+          {/* Bottomblocks */}
+          {blok.bottomblocks && blok.bottomblocks.map((nestedBlok) => (
+            <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+          ))}
+        </main>
+
+      </div>
+    );
+  }
 }

@@ -27,9 +27,10 @@ export default class Location extends Component {
 							</section>
 						</div>
 					</div>
-					{this.props.blok.additionalstuff && this.props.blok.additionalstuff.map((nestedBlok) => (
-							<StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
-						))}
+					{this.props.blok.bottomblocks && this.props.blok.bottomblocks.map((nestedBlok) => (
+  <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+))}
+
 				</main>
 			</div>
 		);
