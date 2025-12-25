@@ -7,3 +7,6 @@ a {
 p img{
     max-width: 100%;
 }
+body {
+  background-color: rgb(225, 236, 239) !important;
+}
