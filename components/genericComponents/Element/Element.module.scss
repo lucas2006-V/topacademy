@@ -11,6 +11,9 @@
   
   .title {
     @include very-small-title-font($color-red-normal);
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem
+
   }
   
   .shortdescription {

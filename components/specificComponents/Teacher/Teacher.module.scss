@@ -94,7 +94,11 @@
 
   &__title {
     margin-bottom: 20px;
-    @include title-font;
+    @include title-font($color-black);
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600;
+    line-height: 1.2;
   }
 }
 
