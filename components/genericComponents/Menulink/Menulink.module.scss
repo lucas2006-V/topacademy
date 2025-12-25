@@ -173,10 +173,11 @@ p.main-header__dropdown-item-text {
 }
 
 p.main-header__dropdown-item-maintext {
-  margin-bottom: 0;
-  margin-left: 0;
-  @include header-font;
-
+  margin: 0;
+  font-size: 1.5rem; 
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 span.main-header__dropdown-item-text--highlighted {

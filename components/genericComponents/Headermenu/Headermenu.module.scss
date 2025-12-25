@@ -5,10 +5,12 @@
 
 .main-header {
   @include header-font;
+  height: 100px;
+  background: repeating-linear-gradient( 135deg, #1a1a1a, #1a1a1a 20px, #8b0000 20px, #8b0000 40px );
   
   &__nav {
     display: grid;
-    grid-template-rows: 83px;
+    grid-template-rows: 100px;
     grid-template-columns: 230px auto;
   }
   
@@ -37,7 +39,7 @@
   
   &__nav-home-logo {
     display: none;
-    height: 41px;
+    height: 80px;
     
     &--mobile {
       @extend .main-header__nav-home-logo;
@@ -46,7 +48,7 @@
   }
   
   &__nav-list {
-    display: grid;
+    display: flex;
     grid-template-rows: 83px;
     grid-template-columns: auto 60px;
   }

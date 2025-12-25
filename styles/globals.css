@@ -8,5 +8,6 @@ p img{
     max-width: 100%;
 }
 body {
-  background-color: rgb(225, 236, 239) !important;
+  background-color: rgb(253, 253, 200) !important;
 }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
