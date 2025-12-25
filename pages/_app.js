@@ -80,11 +80,6 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      {/* Header (optioneel, staat nu correct) */}
-      <header style={{ padding: "1rem", background: "#f5f5f5" }}>
-        <img src="/logo.png" alt="Logo" style={{ height: "50px" }} />
-      </header>
-
       {/* Tawk.to live chat */}
       <Script
         id="tawk-to"
