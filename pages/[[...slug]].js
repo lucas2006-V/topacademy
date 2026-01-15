@@ -19,7 +19,7 @@ export default function Page({ story, preview, socialtags, menu }) {
       "course.locations",
       "course.products",
       "list.elements",
-      "prices.Related_locations"
+      "prices.related_locations"
     ]
   }, preview);
 
@@ -52,7 +52,7 @@ export async function getStaticProps({ params }) {
       "course.locations",
       "course.products",
       "list.elements",
-      "prices.Related_locations"
+      "prices.related_locations"
     ]
   };
 
