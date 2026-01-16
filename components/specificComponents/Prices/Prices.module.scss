@@ -11,7 +11,6 @@
   padding: 40px 18px 64px;
 }
 
-/* Titel + intro */
 .title {
   font-size: clamp(28px, 3.2vw, 44px);
   line-height: 1.15;
@@ -27,7 +26,6 @@
   margin: 0 0 18px;
 }
 
-/* Sections spacing */
 .section {
   margin: 18px 0 26px;
 }
@@ -52,7 +50,6 @@
   }
 }
 
-/* “Card” rond elke tabel */
 .tableCard {
   margin: 18px 0 34px;
   background: #b9e00a;
@@ -60,15 +57,14 @@
   border-radius: 14px;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
   padding: 14px;
-  overflow-x: auto; /* mobiel: scroll als te breed */
+  overflow-x: auto;
 }
 
-/* Tabel styling */
 .table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  min-width: 680px; /* zorgt dat kolommen niet te smal worden */
+  min-width: 680px;
 
   th,
   td {
@@ -84,28 +80,24 @@
   th {
     background: #0055ff;
     font-weight: 650;
-    color: #ffffff; /* beter leesbaar op blauw */
+    color: #ffffff;
   }
 
-  /* eerste kolom iets nadrukkelijker */
   td:first-child {
     font-weight: 900;
     color: #4f0052;
     background: #b9e00a;
   }
 
-  /* zebra rows (niet de eerste kolom overschrijven) */
   tbody tr:nth-child(even) td:not(:first-child) {
     background: #fcfcfd;
   }
 
-  /* hover (niet de eerste kolom overschrijven) */
   tbody tr:hover td:not(:first-child) {
     background: #f3f7ff;
   }
 }
 
-/* Bottomblocks spacing */
 .bottom {
   margin-top: 46px;
   padding-top: 18px;
@@ -113,55 +105,49 @@
   color: #2b2b2b;
 }
 
-/* =========================================================
-   ✅ NIEUW: CONNECTED LOCATIONS (zoals foto 2) + in het midden
-   (Je JS gebruikt: locationsConnected / locationsHeading /
-    locationsItems / locationItem)
-   ========================================================= */
-
 .locationsConnected {
   margin-top: 48px;
   padding-top: 22px;
   border-top: 1px solid #ececec;
 
-  /* ✅ alles in het midden */
+  width: fit-content;
+  margin-left: auto;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
+
+  padding-left: 16px;
+  border-left: 3px solid #0b5bd3;
 }
 
 .locationsHeading {
   margin: 0 0 12px;
-  font-size: 26px; /* pas aan aan je design */
+  font-size: 20px;
   letter-spacing: 0.18em;
   font-weight: 800;
   text-transform: uppercase;
-  color: #0b1b3a; /* titel zoals op je screenshot */
+  color: #0b1b3a;
 }
 
 .locationsItems {
   display: flex;
-  flex-direction: column; /* onder elkaar zoals foto */
-  align-items: center;    /* ✅ midden */
+  flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
 }
 
 .locationItem {
-  /* ✅ gebruikt je colorcode uit JS: style={{ "--accent": ... }} */
-  color: var(--accent);
+  color: #0b5bd3;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+
+  border-left: 6px solid var(--accent);
+  padding-left: 10px;
 }
 
-/* =========================================================
-   (OPTIONEEL) Oude “button” versie mag blijven staan,
-   maar als je die niet meer gebruikt, mag je dit wegdoen:
-   locationsBottom/locationsTitle/locationsList/locationsItem/locationsLink
-   ========================================================= */
-
-/* ✅ Locations onderaan, gecentreerd (oude versie - mag blijven) */
 .locationsBottom {
   margin-top: 48px;
   padding-top: 22px;

@@ -8,22 +8,6 @@ import {
 import css from "./Prices.module.scss";
 import Headermenu from "../../genericComponents/Headermenu/Headermenu";
 
-/**
- * Prices schema (zoals je screenshot):
- * - title (Text)
- * - intro_text (Textarea)
- * - bottomblocks (Blocks)
- * - sections (Blocks)
- * - locations (Multi-Options)  ✅ (hieronder renderen we "LOCATIONS" + links)
- * - colorcode (Single-Option)
- *
- * BELANGRIJK:
- * - In jouw multi-options zie ik items zoals:
- *   "ghent"  (slug)  + "/locations/ghent" (pad)
- * - Dit script maakt links naar de location-pagina’s.
- * - Als jouw route anders is, pas LOCATION_BASE_PATH aan.
- */
-
 const LOCATION_BASE_PATH = "/locations/";
 
 const Prices = ({ blok, menu }) => {
@@ -91,7 +75,7 @@ const Prices = ({ blok, menu }) => {
     );
   };
 
-  // accentkleur via CSS var
+ 
   const toCssColor = (cc) => {
     switch (cc) {
       case "blue":
@@ -109,7 +93,7 @@ const Prices = ({ blok, menu }) => {
     }
   };
 
-  // --- locations normaliseren (multi-options kan string of object zijn) ---
+
   const toLabelFromString = (value) =>
     String(value)
       .replace(/[-_]/g, " ")
@@ -124,7 +108,7 @@ const Prices = ({ blok, menu }) => {
   const normalizeLocation = (loc) => {
     if (!loc) return null;
 
-    // string: "ghent"
+   
     if (typeof loc === "string") {
       return {
         key: loc,
@@ -133,7 +117,7 @@ const Prices = ({ blok, menu }) => {
       };
     }
 
-    // object: { name: "Ghent", value: "ghent" } of varianten
+  
     if (typeof loc === "object") {
       const value =
         loc.value ??
@@ -146,7 +130,7 @@ const Prices = ({ blok, menu }) => {
       const label =
         loc.name ?? loc.label ?? (value ? toLabelFromString(value) : "Location");
 
-      // als Storyblok object ooit full_slug bevat, gebruiken we dat
+     
       const href = loc.full_slug
         ? `/${String(loc.full_slug).replace(/^\/+/, "")}`
         : value
@@ -226,7 +210,6 @@ const Prices = ({ blok, menu }) => {
             </div>
           )}
 
-          {/* ✅ ONDERAAN: LOCATIONS gelinkt + klikbaar */}
           {locations.length > 0 && (
             <section className={css.locationsConnected}>
               <h2 className={css.locationsHeading}>LOCATIONS</h2>
