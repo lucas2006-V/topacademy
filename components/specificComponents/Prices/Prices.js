@@ -8,10 +8,18 @@ import {
 import css from "./Prices.module.scss";
 import Headermenu from "../../genericComponents/Headermenu/Headermenu";
 
-const LOCATION_BASE_PATH = "/locations/"; // pas aan indien jouw URL-structuur anders is
+/**
+ * Verwachting Storyblok velden (zoals op je schema screenshot):
+ * - title (Text)
+ * - intro_text (Textarea)
+ * - bottomblocks (Blocks)
+ * - sections (Blocks)
+ * - locations (Multi-Options)  ✅ (hier renderen we de "LOCATIONS" zoals foto 2)
+ * - colorcode (Single-Option)  ✅ (hiermee kleuren we accenten)
+ */
 
 const Prices = ({ blok, menu }) => {
-  /* ---------- helpers ---------- */
+  /* ----------------- helpers ----------------- */
 
   const renderRich = (rich) => {
     if (!rich) return null;
@@ -75,18 +83,32 @@ const Prices = ({ blok, menu }) => {
     );
   };
 
+  // --- colorcode: maak er een CSS variabele van ---
+  const toCssColor = (cc) => {
+    // jouw Storyblok options lijken bv: "blue"
+    // je kan dit uitbreiden naar eender welke kleuren die jij gebruikt
+    switch (cc) {
+      case "blue":
+        return "#0b3bff";
+      case "red":
+        return "#ff2b2b";
+      case "green":
+        return "#16a34a";
+      case "black":
+        return "#111827";
+      case "purple":
+        return "#7c3aed";
+      default:
+        return "#0b3bff";
+    }
+  };
+
+  // --- locations (multi-options) kan string of object zijn -> normaliseren ---
   const toLabelFromString = (value) =>
     String(value)
       .replace(/[-_]/g, " ")
       .replace(/\b\w/g, (c) => c.toUpperCase());
 
-  const toHrefFromString = (value) => {
-    const v = String(value);
-    if (v.startsWith("/")) return v;
-    return `${LOCATION_BASE_PATH}${v}`;
-  };
-
-  // ✅ werkt voor multi-options als strings OF objects (datasource/object mode)
   const normalizeLocation = (loc) => {
     if (!loc) return null;
 
@@ -95,7 +117,6 @@ const Prices = ({ blok, menu }) => {
       return {
         key: loc,
         label: toLabelFromString(loc),
-        href: toHrefFromString(loc),
       };
     }
 
@@ -112,34 +133,32 @@ const Prices = ({ blok, menu }) => {
       const label =
         loc.name ?? loc.label ?? (value ? toLabelFromString(value) : "Location");
 
-      const href = loc.full_slug
-        ? `/${String(loc.full_slug).replace(/^\/+/, "")}`
-        : value
-        ? toHrefFromString(value)
-        : "#";
-
       const key = loc.uuid ?? loc.id ?? value ?? label;
 
-      return { key, label, href };
+      return { key, label };
     }
 
     return null;
   };
 
-  /* ---------- data ---------- */
+  /* ----------------- data ----------------- */
 
   const sections = Array.isArray(blok?.sections) ? blok.sections : [];
   const bottomblocks = Array.isArray(blok?.bottomblocks)
     ? blok.bottomblocks
     : [];
 
-  // ✅ Multi-options (géén references)
   const locations = Array.isArray(blok?.locations) ? blok.locations : [];
+  const accent = toCssColor(blok?.colorcode);
 
-  /* ---------- render ---------- */
+  /* ----------------- render ----------------- */
 
   return (
-    <div {...storyblokEditable(blok)} className={css.prices}>
+    <div
+      {...storyblokEditable(blok)}
+      className={css.prices}
+      style={{ "--accent": accent }}
+    >
       <Headermenu blok={menu?.content} />
 
       <main>
@@ -187,23 +206,21 @@ const Prices = ({ blok, menu }) => {
             </div>
           )}
 
-          {/* ✅ ONDERAAN + GECENTREERD: locations (multi-options) */}
+          {/* ✅ CONNECTED BLOCK STYLE (zoals foto 2): groot "LOCATIONS" + daaronder items */}
           {locations.length > 0 && (
-            <section className={css.locationsBottom}>
-              <h2 className={css.locationsTitle}>Locations</h2>
+            <section className={css.locationsConnected}>
+              <h2 className={css.locationsHeading}>LOCATIONS</h2>
 
-              <ul className={css.locationsList}>
+              <div className={css.locationsItems}>
                 {locations
                   .map(normalizeLocation)
                   .filter(Boolean)
-                  .map((loc) => (
-                    <li key={loc.key} className={css.locationsItem}>
-                      <a className={css.locationsLink} href={loc.href}>
-                        {loc.label}
-                      </a>
-                    </li>
+                  .map((l) => (
+                    <div key={l.key} className={css.locationItem}>
+                      {l.label}
+                    </div>
                   ))}
-              </ul>
+              </div>
             </section>
           )}
         </div>
@@ -213,3 +230,4 @@ const Prices = ({ blok, menu }) => {
 };
 
 export default Prices;
+
