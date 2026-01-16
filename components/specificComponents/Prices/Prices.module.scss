@@ -113,7 +113,55 @@
   color: #2b2b2b;
 }
 
-/* ✅ Locations onderaan, gecentreerd */
+/* =========================================================
+   ✅ NIEUW: CONNECTED LOCATIONS (zoals foto 2) + in het midden
+   (Je JS gebruikt: locationsConnected / locationsHeading /
+    locationsItems / locationItem)
+   ========================================================= */
+
+.locationsConnected {
+  margin-top: 48px;
+  padding-top: 22px;
+  border-top: 1px solid #ececec;
+
+  /* ✅ alles in het midden */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.locationsHeading {
+  margin: 0 0 12px;
+  font-size: 26px; /* pas aan aan je design */
+  letter-spacing: 0.18em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #0b1b3a; /* titel zoals op je screenshot */
+}
+
+.locationsItems {
+  display: flex;
+  flex-direction: column; /* onder elkaar zoals foto */
+  align-items: center;    /* ✅ midden */
+  gap: 8px;
+}
+
+.locationItem {
+  /* ✅ gebruikt je colorcode uit JS: style={{ "--accent": ... }} */
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   (OPTIONEEL) Oude “button” versie mag blijven staan,
+   maar als je die niet meer gebruikt, mag je dit wegdoen:
+   locationsBottom/locationsTitle/locationsList/locationsItem/locationsLink
+   ========================================================= */
+
+/* ✅ Locations onderaan, gecentreerd (oude versie - mag blijven) */
 .locationsBottom {
   margin-top: 48px;
   padding-top: 22px;
