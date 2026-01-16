@@ -1,7 +1,6 @@
 @import "../../../styles/font-mixins.scss";
 @import "../../../styles/colors.scss";
 
-
 .prices {
   background: rgb(253, 253, 200);
 }
@@ -73,7 +72,7 @@
 
   th,
   td {
-    border: 1px solid #000000; /* i.p.v. hard zwart */
+    border: 1px solid #000000;
     padding: 12px 12px;
     vertical-align: top;
     overflow-wrap: break-word;
@@ -85,7 +84,7 @@
   th {
     background: #0055ff;
     font-weight: 650;
-    color: #1f2937;
+    color: #ffffff; /* beter leesbaar op blauw */
   }
 
   /* eerste kolom iets nadrukkelijker */
@@ -95,12 +94,13 @@
     background: #b9e00a;
   }
 
-  /* zebra rows */
-  tbody tr:nth-child(even) td {
+  /* zebra rows (niet de eerste kolom overschrijven) */
+  tbody tr:nth-child(even) td:not(:first-child) {
     background: #fcfcfd;
   }
 
-  tbody tr:hover td {
+  /* hover (niet de eerste kolom overschrijven) */
+  tbody tr:hover td:not(:first-child) {
     background: #f3f7ff;
   }
 }
@@ -111,4 +111,48 @@
   padding-top: 18px;
   border-top: 1px solid #ececec;
   color: #2b2b2b;
+}
+
+/* ✅ Locations onderaan, gecentreerd */
+.locationsBottom {
+  margin-top: 48px;
+  padding-top: 22px;
+  border-top: 1px solid #ececec;
+  text-align: center;
+}
+
+.locationsTitle {
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+
+.locationsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: inline-flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.locationsItem {
+  margin: 0;
+}
+
+.locationsLink {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background: #ffffff;
+
+  color: #0b5bd3;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover {
+    opacity: 0.9;
+  }
 }

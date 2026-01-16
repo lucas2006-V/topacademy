@@ -6,7 +6,9 @@ import {
 } from "@storyblok/react";
 
 import css from "./Prices.module.scss";
-import Headermenu from "../../genericComponents/Headermenu/Headermenu"; // pas aan indien nodig
+import Headermenu from "../../genericComponents/Headermenu/Headermenu";
+
+const LOCATION_BASE_PATH = "/locations/"; // pas aan indien jouw URL-structuur anders is
 
 const Prices = ({ blok, menu }) => {
   /* ---------- helpers ---------- */
@@ -16,9 +18,7 @@ const Prices = ({ blok, menu }) => {
     return (
       <div
         className={css.paragraph}
-        dangerouslySetInnerHTML={{
-          __html: renderRichText(rich),
-        }}
+        dangerouslySetInnerHTML={{ __html: renderRichText(rich) }}
       />
     );
   };
@@ -75,45 +75,20 @@ const Prices = ({ blok, menu }) => {
     );
   };
 
-  const getStoryTitle = (story) =>
-    story?.content?.title ||
-    story?.content?.name ||
-    story?.name ||
-    story?.slug ||
-    "View";
-
-  const getStoryHref = (story) => {
-    const slug = story?.full_slug || story?.slug;
-    if (!slug) return null;
-    return slug.startsWith("/") ? slug : `/${slug}`;
+  const toLabel = (value) => {
+    if (!value) return "";
+    // "ghent" -> "Ghent", "brussels" -> "Brussels"
+    return String(value)
+      .replace(/[-_]/g, " ")
+      .replace(/\b\w/g, (c) => c.toUpperCase());
   };
 
-  const renderReferences = (items, emptyText) => {
-    if (!Array.isArray(items) || items.length === 0) {
-      return emptyText ? <p className={css.refEmpty}>{emptyText}</p> : null;
-    }
-
-    return (
-      <ul className={css.refList}>
-        {items.map((item) => {
-          const key = item?.uuid || item?.id || item?._uid || item?.slug;
-          const href = getStoryHref(item);
-          const label = getStoryTitle(item);
-
-          return (
-            <li key={key}>
-              {href ? (
-                <a className={css.refLink} href={href}>
-                  {label}
-                </a>
-              ) : (
-                <span className={css.refText}>{label}</span>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    );
+  const toHref = (value) => {
+    if (!value) return "#";
+    const v = String(value);
+    if (v.startsWith("/")) return v;
+    // multi-options bevat bv: "ghent" -> "/locations/ghent"
+    return `${LOCATION_BASE_PATH}${v}`;
   };
 
   /* ---------- data ---------- */
@@ -123,14 +98,8 @@ const Prices = ({ blok, menu }) => {
     ? blok.bottomblocks
     : [];
 
-  // 👇 References (alleen locations)
-  // Zorg dat je in Storyblok dit veld hebt gemaakt in content type "prices":
-  // - related_locations (References)
-  // En dat je in [[...slug]].js resolve_relations toevoegde:
-  // "prices.related_locations"
-  const relatedLocations = Array.isArray(blok?.related_locations)
-    ? blok.related_locations
-    : [];
+  // ✅ Multi-options (géén references)
+  const locations = Array.isArray(blok?.locations) ? blok.locations : [];
 
   /* ---------- render ---------- */
 
@@ -142,16 +111,6 @@ const Prices = ({ blok, menu }) => {
         <div className={css.container}>
           {blok?.title && <h1 className={css.title}>{blok.title}</h1>}
           {blok?.intro_text && <p className={css.intro}>{blok.intro_text}</p>}
-
-          {/* ✅ Optie B: toon links naar location-stories */}
-          {relatedLocations.length > 0 && (
-            <section className={css.references}>
-              <div className={css.refBlock}>
-                <h2 className={css.refTitle}>Locations</h2>
-                {renderReferences(relatedLocations)}
-              </div>
-            </section>
-          )}
 
           {sections.map((section) => {
             const comp = section?.component;
@@ -192,6 +151,22 @@ const Prices = ({ blok, menu }) => {
               ))}
             </div>
           )}
+
+          {/* ✅ ONDERAAN + GECENTREERD: locations (multi-options) */}
+          {locations.length > 0 && (
+            <section className={css.locationsBottom}>
+              <h2 className={css.locationsTitle}>Locations</h2>
+              <ul className={css.locationsList}>
+                {locations.map((loc) => (
+                  <li key={loc} className={css.locationsItem}>
+                    <a className={css.locationsLink} href={toHref(loc)}>
+                      {toLabel(loc)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
       </main>
     </div>
@@ -199,3 +174,4 @@ const Prices = ({ blok, menu }) => {
 };
 
 export default Prices;
+
