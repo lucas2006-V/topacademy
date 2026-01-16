@@ -202,35 +202,34 @@ const Prices = ({ blok, menu }) => {
             return null;
           })}
 
-          {bottomblocks.length > 0 && (
-            <div className={css.bottom}>
-              {bottomblocks.map((nestedBlok) => (
-                <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
-              ))}
+          {locations.length > 0 && (
+            <section className={css.locationsConnected}>
+            <h2 className={css.locationsHeading}>LOCATIONS</h2>
+            <div className={css.locationsItems}>
+          {locations
+          .map(normalizeLocation)
+          .filter(Boolean)
+          .map((l) => (
+          <a
+            key={l.key}
+            href={l.href}
+            className={css.locationLink}
+            aria-label={`Go to ${l.label}`}
+            >
+            {l.label}
+            </a>
+          ))}
+          </div>
+         </section>
+         )}  
+        {bottomblocks.length > 0 && ( 
+        <div className={css.bottom}>
+            {bottomblocks.map((nestedBlok) => (
+              <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+             ))}
             </div>
           )}
 
-          {locations.length > 0 && (
-            <section className={css.locationsConnected}>
-              <h2 className={css.locationsHeading}>LOCATIONS</h2>
-
-              <div className={css.locationsItems}>
-                {locations
-                  .map(normalizeLocation)
-                  .filter(Boolean)
-                  .map((l) => (
-                    <a
-                      key={l.key}
-                      href={l.href}
-                      className={css.locationLink}
-                      aria-label={`Go to ${l.label}`}
-                    >
-                      {l.label}
-                    </a>
-                  ))}
-              </div>
-            </section>
-          )}
         </div>
       </main>
     </div>
