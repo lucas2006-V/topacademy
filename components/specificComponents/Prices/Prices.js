@@ -75,20 +75,55 @@ const Prices = ({ blok, menu }) => {
     );
   };
 
-  const toLabel = (value) => {
-    if (!value) return "";
-    // "ghent" -> "Ghent", "brussels" -> "Brussels"
-    return String(value)
+  const toLabelFromString = (value) =>
+    String(value)
       .replace(/[-_]/g, " ")
       .replace(/\b\w/g, (c) => c.toUpperCase());
-  };
 
-  const toHref = (value) => {
-    if (!value) return "#";
+  const toHrefFromString = (value) => {
     const v = String(value);
     if (v.startsWith("/")) return v;
-    // multi-options bevat bv: "ghent" -> "/locations/ghent"
     return `${LOCATION_BASE_PATH}${v}`;
+  };
+
+  // ✅ werkt voor multi-options als strings OF objects (datasource/object mode)
+  const normalizeLocation = (loc) => {
+    if (!loc) return null;
+
+    // string: "kontich"
+    if (typeof loc === "string") {
+      return {
+        key: loc,
+        label: toLabelFromString(loc),
+        href: toHrefFromString(loc),
+      };
+    }
+
+    // object: { name: "Kontich", value: "kontich" } of varianten
+    if (typeof loc === "object") {
+      const value =
+        loc.value ??
+        loc.slug ??
+        loc.full_slug ??
+        loc.uuid ??
+        loc.id ??
+        loc.name;
+
+      const label =
+        loc.name ?? loc.label ?? (value ? toLabelFromString(value) : "Location");
+
+      const href = loc.full_slug
+        ? `/${String(loc.full_slug).replace(/^\/+/, "")}`
+        : value
+        ? toHrefFromString(value)
+        : "#";
+
+      const key = loc.uuid ?? loc.id ?? value ?? label;
+
+      return { key, label, href };
+    }
+
+    return null;
   };
 
   /* ---------- data ---------- */
@@ -156,14 +191,18 @@ const Prices = ({ blok, menu }) => {
           {locations.length > 0 && (
             <section className={css.locationsBottom}>
               <h2 className={css.locationsTitle}>Locations</h2>
+
               <ul className={css.locationsList}>
-                {locations.map((loc) => (
-                  <li key={loc} className={css.locationsItem}>
-                    <a className={css.locationsLink} href={toHref(loc)}>
-                      {toLabel(loc)}
-                    </a>
-                  </li>
-                ))}
+                {locations
+                  .map(normalizeLocation)
+                  .filter(Boolean)
+                  .map((loc) => (
+                    <li key={loc.key} className={css.locationsItem}>
+                      <a className={css.locationsLink} href={loc.href}>
+                        {loc.label}
+                      </a>
+                    </li>
+                  ))}
               </ul>
             </section>
           )}
@@ -174,4 +213,3 @@ const Prices = ({ blok, menu }) => {
 };
 
 export default Prices;
-
